@@ -51,7 +51,7 @@
   /* Start Style Theme Mode */
   --mp-theme: #232a3b;
   --mp-theme-other: #283144;
-  --mp-theme-other-hover: #666cff;
+  --mp-theme-other-hover: #555668;
   --mp-theme-dropdown-menu: #1c222f;
   --mp-theme-color: #d8deea;
   /* End Style Theme Mode */
@@ -595,7 +595,7 @@ input[type="color"] {
   position: relative;
   margin: 0 90px 0 0;
   color: #50cd89;
-  font-size: 18px;
+  font-size: 16px;
 }
 .category-section-menu-sidebar::before {
   content: "";
@@ -1806,7 +1806,7 @@ input[type="color"] {
   overflow-x: auto;
 }
 .table-users-page-new-user-request tr {
-  height: 50px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1815,7 +1815,7 @@ input[type="color"] {
 .table-users-page-new-user-request tr th,
 .table-users-page-new-user-request tr td {
   position: relative;
-  width: 170px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2043,7 +2043,7 @@ input[type="color"] {
 .table-all-expert-lades tr th,
 .table-all-expert-lades tr td {
   position: relative;
-  width: 300px;
+  width: 100px;
   display: flex;
   align-items: center;
   justify-content: center;

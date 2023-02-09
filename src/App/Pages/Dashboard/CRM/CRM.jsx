@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Start Section Imports
-import React from "react";
+import React from 'react';
 import {
   MobileFriendly,
   MovieFilter,
@@ -7,9 +7,10 @@ import {
   Code,
   KeyboardArrowUp,
   KeyboardArrowDown,
-} from "@mui/icons-material";
-import Chart from "react-apexcharts";
-import fa from "apexcharts/dist/locales/fa.json";
+} from '@mui/icons-material';
+import Chart from 'react-apexcharts';
+import fa from 'apexcharts/dist/locales/fa.json';
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////// End Section Imports
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Start Section Class
@@ -17,28 +18,28 @@ export default class CRM extends React.Component {
   state = {
     SeriesMonthlyBudget: [
       {
-        name: "بودجه ماهانه - بیشترین حد",
-        type: "column",
+        name: 'بودجه ماهانه - بیشترین حد',
+        type: 'column',
         data: [440, 505, 414, 671, 600, 413, 201, 352, 752, 320, 257, 260],
       },
       {
-        name: "بودجه ماهانه - کمترین حد",
-        type: "line",
+        name: 'بودجه ماهانه - کمترین حد',
+        type: 'line',
         data: [230, 402, 305, 207, 403, 202, 170, 301, 220, 220, 102, 106],
       },
     ],
     OptionsMonthlyBudget: {
       chart: {
-        type: "line",
+        type: 'line',
         stacked: true,
         toolbar: {
           show: true,
-          autoSelected: "pan",
+          autoSelected: 'pan',
         },
         locales: [fa],
-        defaultLocale: "fa",
-        fontFamily: "IranSans",
-        foreColor: "var(--mp-theme-color)",
+        defaultLocale: 'fa',
+        fontFamily: 'IranSans',
+        foreColor: 'var(--mp-theme-color)',
       },
       stroke: {
         width: [0, 4],
@@ -47,7 +48,7 @@ export default class CRM extends React.Component {
         enabled: true,
         enabledOnSeries: [1],
       },
-      labels: ["12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"],
+      labels: ['12', '11', '10', '9', '8', '7', '6', '5', '4', '3', '2', '1'],
       yaxis: {
         opposite: true,
       },
@@ -55,18 +56,18 @@ export default class CRM extends React.Component {
     SeriesTotalProfit: [87, 54],
     OptionsTotalProfit: {
       chart: {
-        type: "radialBar",
+        type: 'radialBar',
         stacked: true,
         toolbar: {
           show: true,
-          autoSelected: "pan",
+          autoSelected: 'pan',
         },
         locales: [fa],
-        defaultLocale: "fa",
-        fontFamily: "IranSans",
-        foreColor: "var(--mp-theme-color)",
+        defaultLocale: 'fa',
+        fontFamily: 'IranSans',
+        foreColor: 'var(--mp-theme-color)',
       },
-      colors: ["#3CCF4E", "#fb8500"],
+      colors: ['#3CCF4E', '#fb8500'],
       plotOptions: {
         enabled: true,
         radialBar: {
@@ -74,25 +75,25 @@ export default class CRM extends React.Component {
           endAngle: 150,
           dataLabels: {
             name: {
-              fontSize: "16px",
-              color: "var(--mp-theme-color)",
+              fontSize: '16px',
+              color: 'var(--mp-theme-color)',
               offsetY: -10,
             },
             value: {
               offsetY: 10,
-              fontSize: "20px",
-              color: "var(--mp-theme-color)",
+              fontSize: '20px',
+              color: 'var(--mp-theme-color)',
               formatter: function (val) {
-                return val + "%";
+                return val + '%';
               },
             },
           },
         },
       },
       fill: {
-        type: "gradient",
+        type: 'gradient',
         gradient: {
-          shade: "light",
+          shade: 'light',
           shadeIntensity: 0.3,
           inverseColors: true,
           opacityFrom: 1,
@@ -102,7 +103,7 @@ export default class CRM extends React.Component {
       },
       stroke: {
         dashArray: 4,
-        colors: ["var(--mp-theme-color)"],
+        colors: ['var(--mp-theme-color)'],
       },
       yaxis: {
         opposite: true,
@@ -110,42 +111,42 @@ export default class CRM extends React.Component {
     },
     SeriesTotalGrowth: [
       {
-        name: "رشد کل",
+        name: 'رشد کل',
         data: [60, 30, 90, 20, 121, 54],
       },
     ],
     OptionsTotalGrowth: {
       chart: {
-        type: "line",
+        type: 'line',
         zoom: {
           enabled: false,
         },
         stacked: true,
         toolbar: {
           show: true,
-          autoSelected: "pan",
+          autoSelected: 'pan',
         },
         locales: [fa],
-        defaultLocale: "fa",
-        fontFamily: "IranSans",
-        foreColor: "var(--mp-theme-color)",
+        defaultLocale: 'fa',
+        fontFamily: 'IranSans',
+        foreColor: 'var(--mp-theme-color)',
       },
       dataLabels: {
         enabled: false,
       },
       stroke: {
-        curve: "straight",
+        curve: 'straight',
         show: true,
-        colors: ["#fb8500"],
+        colors: ['#fb8500'],
       },
       grid: {
         row: {
-          colors: ["transparent"],
+          colors: ['transparent'],
           opacity: 0.5,
         },
       },
       xaxis: {
-        categories: ["شهریور", "مرداد", "تیر", "خرداد", "اردیبهشت", "فروردین"],
+        categories: ['شهریور', 'مرداد', 'تیر', 'خرداد', 'اردیبهشت', 'فروردین'],
       },
       yaxis: {
         opposite: true,
@@ -158,30 +159,30 @@ export default class CRM extends React.Component {
     ],
     OptionsProjectTimeline: {
       chart: {
-        type: "bar",
+        type: 'bar',
         stacked: true,
         toolbar: {
           show: true,
-          autoSelected: "pan",
+          autoSelected: 'pan',
         },
         locales: [fa],
-        defaultLocale: "fa",
-        fontFamily: "IranSans",
-        foreColor: "var(--mp-theme-color)",
+        defaultLocale: 'fa',
+        fontFamily: 'IranSans',
+        foreColor: 'var(--mp-theme-color)',
       },
       plotOptions: {
         bar: {
-          barHeight: "100%",
+          barHeight: '100%',
           distributed: true,
           horizontal: true,
           dataLabels: {
-            position: "bottom",
+            position: 'bottom',
           },
         },
       },
       dataLabels: {
         enabled: true,
-        textAnchor: "start",
+        textAnchor: 'start',
         offsetX: 15,
         dropShadow: {
           enabled: true,
@@ -191,7 +192,7 @@ export default class CRM extends React.Component {
         width: 1,
       },
       xaxis: {
-        categories: ["امیر", "حسین", "محمد", "علی"],
+        categories: ['سعید', 'ستاره', 'حمیدرضا ', 'پاشا'],
       },
       yaxis: {
         opposite: true,
@@ -200,16 +201,16 @@ export default class CRM extends React.Component {
     SeriesSocialNetworkVisits: [76, 67, 61, 90],
     OptionsSocialNetworkVisits: {
       chart: {
-        type: "radialBar",
+        type: 'radialBar',
         stacked: true,
         toolbar: {
           show: true,
-          autoSelected: "pan",
+          autoSelected: 'pan',
         },
         locales: [fa],
-        defaultLocale: "fa",
-        fontFamily: "IranSans",
-        foreColor: "var(--mp-theme-color)",
+        defaultLocale: 'fa',
+        fontFamily: 'IranSans',
+        foreColor: 'var(--mp-theme-color)',
       },
       plotOptions: {
         radialBar: {
@@ -218,8 +219,8 @@ export default class CRM extends React.Component {
           endAngle: 270,
           hollow: {
             margin: 5,
-            size: "30%",
-            background: "transparent",
+            size: '30%',
+            background: 'transparent',
             image: undefined,
           },
           dataLabels: {
@@ -232,13 +233,13 @@ export default class CRM extends React.Component {
           },
         },
       },
-      colors: ["#3CCF4E", "#0084ff", "#666cff", "#fb8500"],
-      labels: ["واتساپ", "تلگرام", "فیسبوک", "اینستاگرام"],
+      colors: ['#3CCF4E', '#0084ff', '#666cff', '#fb8500'],
+      labels: ['گروه ایشو', 'تیکت', 'ایمیل', 'تلفن'],
       legend: {
         show: true,
         floating: true,
-        fontSize: "16px",
-        position: "right",
+        fontSize: '16px',
+        position: 'right',
         offsetX: 210,
         offsetY: 5,
         labels: {
@@ -249,7 +250,7 @@ export default class CRM extends React.Component {
         },
         formatter: function (seriesName, opts) {
           return (
-            " " + seriesName + " :  " + opts.w.globals.series[opts.seriesIndex]
+            ' ' + seriesName + ' :  ' + opts.w.globals.series[opts.seriesIndex]
           );
         },
         itemMargin: {
@@ -272,32 +273,32 @@ export default class CRM extends React.Component {
     },
     SeriesExternalLinks: [
       {
-        name: "تجزیه و تحلیل گوگل",
+        name: 'تجزیه و تحلیل گوگل',
         data: [4.7, 4.65, 4.76, 5.88, 3.5, 5.1],
       },
       {
-        name: "تبلیغات فیس بوک",
+        name: 'تبلیغات فیس بوک',
         data: [-2.5, -2.05, -5.06, -4.18, -3.4, -3.2],
       },
     ],
     OptionsExternalLinks: {
       chart: {
-        type: "bar",
+        type: 'bar',
         stacked: true,
         toolbar: {
           show: true,
-          autoSelected: "pan",
+          autoSelected: 'pan',
         },
         locales: [fa],
-        defaultLocale: "fa",
-        fontFamily: "IranSans",
-        foreColor: "var(--mp-theme-color)",
+        defaultLocale: 'fa',
+        fontFamily: 'IranSans',
+        foreColor: 'var(--mp-theme-color)',
       },
-      colors: ["#666cff", "#fb8500"],
+      colors: ['#666cff', '#fb8500'],
       plotOptions: {
         bar: {
           horizontal: false,
-          endingShape: "rounded",
+          endingShape: 'rounded',
         },
       },
       dataLabels: {
@@ -305,7 +306,7 @@ export default class CRM extends React.Component {
       },
       stroke: {
         width: 1,
-        colors: ["var(--mp-theme-color)"],
+        colors: ['var(--mp-theme-color)'],
       },
       grid: {
         xaxis: {
@@ -326,39 +327,39 @@ export default class CRM extends React.Component {
         },
         y: {
           formatter: function (val) {
-            return Math.abs(val) + "%";
+            return Math.abs(val) + '%';
           },
         },
       },
     },
     SeriesInternalLinks: [
       {
-        name: "تجزیه و تحلیل گوگل",
+        name: 'تجزیه و تحلیل کار سعید ',
         data: [62.5, 46.5, 47.6, 58.8, 38.5, 52.1],
       },
       {
-        name: "تبلیغات فیس بوک",
+        name: 'تجزیه و تحلیل کار پاشا ',
         data: [-25.6, -20.5, -50.6, -41.8, -35.4, -32.2],
       },
     ],
     OptionsInternalLinks: {
       chart: {
-        type: "bar",
+        type: 'bar',
         stacked: true,
         toolbar: {
           show: true,
-          autoSelected: "pan",
+          autoSelected: 'pan',
         },
         locales: [fa],
-        defaultLocale: "fa",
-        fontFamily: "IranSans",
-        foreColor: "var(--mp-theme-color)",
+        defaultLocale: 'fa',
+        fontFamily: 'IranSans',
+        foreColor: 'var(--mp-theme-color)',
       },
-      colors: ["#fb8500", "#666cff"],
+      colors: ['#fb8500', '#666cff'],
       plotOptions: {
         bar: {
           horizontal: false,
-          endingShape: "rounded",
+          endingShape: 'rounded',
         },
       },
       dataLabels: {
@@ -366,7 +367,7 @@ export default class CRM extends React.Component {
       },
       stroke: {
         width: 1,
-        colors: ["var(--mp-theme-color)"],
+        colors: ['var(--mp-theme-color)'],
       },
       grid: {
         xaxis: {
@@ -389,7 +390,7 @@ export default class CRM extends React.Component {
         },
         y: {
           formatter: function (val) {
-            return Math.abs(val) + "%";
+            return Math.abs(val) + '%';
           },
         },
       },
@@ -411,7 +412,7 @@ export default class CRM extends React.Component {
                     <section className="row col-sm-12 d-flex align-items-center justify-content-between pr-2 pl-1 pt-4">
                       <section className="bg-t-o b-r-10">
                         <section className="col-sm-12 d-flex align-items-center justify-content-between">
-                          <h3>بودجه ماهانه</h3>
+                          <h3>گزارش ایشو ها</h3>
 
                           <span>625300تومان</span>
                         </section>

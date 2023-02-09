@@ -12,12 +12,32 @@ import {
   Dashboard,
   KeyboardArrowDown,
   Analytics,
-  SupportAgent,
-  ShoppingCart,
   ArrowUpward,
+  Person,
+  PersonAddAltOutlined,
+  Group,
+  SettingsApplications,
+  Close,
+  RotateLeft,
+  MovingOutlined,
+  PermIdentityOutlined,
+  MailOutlined,
+  ChatBubbleOutlineOutlined,
+  AttachMoneyOutlined,
+  HelpOutlineOutlined,
+  LoginOutlined,
 } from '@mui/icons-material';
+import WysiwygIcon from '@mui/icons-material/Wysiwyg';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import FolderSharedIcon from '@mui/icons-material/FolderShared';
 
 import CRM from './Pages/Dashboard/CRM/CRM';
+import DataAccess from './Pages/Dashboard/DataAccess';
+import DataEmployee from './Pages/Dashboard/DataEmployee';
+import DataZitel from './Pages/Dashboard/DataZitel';
+import UsersAddNewUsers from './Pages/Users/AddNewUsers/AddNewUsers';
+import SettingsSiteSetting from './Pages/Settings/SiteSetting/SiteSetting';
+import Login from './Pages/Account/Login';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -287,6 +307,12 @@ export default class App extends React.Component {
     Search.style.display = '';
   };
 
+  FuncToTopPage = () => {
+    document.querySelector('.content').scrollTo({
+      top: 0,
+    });
+  };
+
   FuncCloseMenuSideBar = () => {
     let Sidebar = document.querySelector('.sidebar');
     let Header = document.querySelector('.header');
@@ -347,6 +373,90 @@ export default class App extends React.Component {
       MenuSidebarItems.classList.remove('active');
       IconMenuSidebarItems.style.transform = '';
     }
+  };
+
+  FuncHiddenMenu = () => {
+    let Menu = document.querySelector('.sidebar');
+    let Content = document.querySelector('.content');
+    let Header = document.querySelector('.header');
+    if (this.state.StateMenuPanel) {
+      this.setState({
+        StateMenuPanel: false,
+      });
+      Menu.style.right = '-240px';
+      Content.style.right = '0';
+      Header.style.right = '0';
+    } else {
+      this.setState({
+        StateMenuPanel: true,
+      });
+      Menu.style.right = '';
+      Content.style.right = '';
+      Header.style.right = '';
+    }
+  };
+
+  FuncChangeMpTheme = () => {
+    let Root = document.querySelector(':root');
+    let ValueInput = document.querySelector('.input-color-mp-theme');
+    this.setState({
+      MpTheme: ValueInput.value,
+    });
+    Root.style.setProperty('--mp-theme', this.state.MpTheme);
+    sessionStorage.setItem('MpTheme', this.state.MpTheme);
+  };
+
+  FuncChangeMpThemeOther = () => {
+    let Root = document.querySelector(':root');
+    let ValueInput = document.querySelector('.input-color-mp-theme-other');
+    this.setState({
+      MpThemeOther: ValueInput.value,
+    });
+    Root.style.setProperty('--mp-theme-other', this.state.MpThemeOther);
+    sessionStorage.setItem('MpThemeOther', this.state.MpThemeOther);
+  };
+
+  FuncChangeMpThemeDropdownMenu = () => {
+    let Root = document.querySelector(':root');
+    let ValueInput = document.querySelector(
+      '.input-color-mp-theme-dropdown-menu'
+    );
+    this.setState({
+      MpThemeDropdownMenu: ValueInput.value,
+    });
+    Root.style.setProperty(
+      '--mp-theme-dropdown-menu',
+      this.state.MpThemeDropdownMenu
+    );
+    sessionStorage.setItem(
+      'MpThemeDropdownMenu',
+      this.state.MpThemeDropdownMenu
+    );
+  };
+
+  FuncChangeMpThemeColor = () => {
+    let Root = document.querySelector(':root');
+    let ValueInput = document.querySelector('.input-color-mp-theme-color');
+    this.setState({
+      MpThemeColor: ValueInput.value,
+    });
+    Root.style.setProperty('--mp-theme-color', this.state.MpThemeColor);
+    sessionStorage.setItem('MpThemeColor', this.state.MpThemeColor);
+  };
+
+  FuncChangeMpThemeOtherHover = () => {
+    let Root = document.querySelector(':root');
+    let ValueInput = document.querySelector(
+      '.input-color-mp-theme-other-hover'
+    );
+    this.setState({
+      MpThemeOtherHover: ValueInput.value,
+    });
+    Root.style.setProperty(
+      '--mp-theme-other-hover',
+      this.state.MpThemeOtherHover
+    );
+    sessionStorage.setItem('MpThemeOtherHover', this.state.MpThemeOtherHover);
   };
 
   render() {
@@ -428,6 +538,13 @@ export default class App extends React.Component {
           >
             <Routes>
               <Route path="/" element={<CRM />} />
+              <Route path="/DataAccess" element={<DataAccess />} />
+              <Route path="/DataEmployee" element={<DataEmployee />} />
+              <Route path="/DataZitel" element={<DataZitel />} />
+
+              <Route path="/UsersAddNewUsers" element={<UsersAddNewUsers />} />
+              <Route path="/SiteSetting" element={<SettingsSiteSetting />} />
+              <Route path="/Login" element={<Login />} />
             </Routes>
           </section>
 
@@ -464,7 +581,6 @@ export default class App extends React.Component {
             </section>
 
             <ul className="section-menu-sidebar">
-              <li className="category-section-menu-sidebar">خانه</li>
               <section className="section-menu-sidebar-main">
                 <li
                   className="section-menu-sidebar-items section-menu-sidebar-items1"
@@ -475,7 +591,7 @@ export default class App extends React.Component {
                   <section>
                     <Dashboard />
 
-                    <span>صفحه اصلی</span>
+                    <span>داشبورد</span>
                   </section>
 
                   <KeyboardArrowDown className="icon-menu-sidebar-items icon-menu-sidebar-items1" />
@@ -490,38 +606,530 @@ export default class App extends React.Component {
                   >
                     <Link to="/">
                       <Analytics />
-                      <span>داشبورد</span>
+                      <span>تجزیه و تحلیل کار</span>
                     </Link>
                   </li>
 
                   <li
                     className="link-items link-item2"
-                    aria-label="DashboardCRM"
+                    aria-label="DataAccess"
                     onClick={() => {
                       this.FuncSetActiveSubMenus('2');
                     }}
                   >
-                    <Link to="/DashboardCRM">
-                      <SupportAgent />
-                      <span>تست دوم</span>
+                    <Link to="/DataAccess">
+                      <WysiwygIcon />
+                      <span>اطلاعات دسترسی سیستم</span>
                     </Link>
                   </li>
 
                   <li
                     className="link-items link-item3"
-                    aria-label="DashboardEcommerce"
+                    aria-label="DataEmployee"
                     onClick={() => {
                       this.FuncSetActiveSubMenus('3');
                     }}
                   >
-                    <Link to="/DashboardEcommerce">
-                      <ShoppingCart />
-                      <span>تست سوم</span>
+                    <Link to="/DataEmployee">
+                      <ContactsIcon />
+                      <span>اطلاعات دسترسی کارمند</span>
+                    </Link>
+                  </li>
+
+                  <li
+                    className="link-items link-item4"
+                    aria-label="DataZitel"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('4');
+                    }}
+                  >
+                    <Link to="/DataZitel">
+                      <FolderSharedIcon />
+                      <span>اطلاعات کارمند</span>
+                    </Link>
+                  </li>
+                </ul>
+              </section>
+
+              <section className="section-menu-sidebar-main">
+                <li
+                  className="section-menu-sidebar-items section-menu-sidebar-items2"
+                  onClick={() => {
+                    this.FuncActiveInActiveSidebarMenu('2');
+                  }}
+                >
+                  <section>
+                    <Person />
+
+                    <span>کاربران</span>
+                  </section>
+
+                  <KeyboardArrowDown className="icon-menu-sidebar-items icon-menu-sidebar-items2" />
+                </li>
+                <ul className="section-menu-sidebar-inner section-menu-sidebar-inner2">
+                  <li
+                    className="link-items link-item5"
+                    aria-label="UsersAddNewUsers"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('5');
+                    }}
+                  >
+                    <Link to="/UsersAddNewUsers">
+                      <PersonAddAltOutlined />
+                      <span>افزودن کاربران جدید</span>
+                    </Link>
+                  </li>
+
+                  <li
+                    className="link-items link-item7"
+                    aria-label="UsersAllUsers"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('6');
+                    }}
+                  >
+                    <Link to="/UsersAllUsers">
+                      <Group />
+                      <span>تمام کاربران</span>
+                    </Link>
+                  </li>
+                </ul>
+              </section>
+
+              <section className="section-menu-sidebar-main">
+                <li
+                  className="section-menu-sidebar-items section-menu-sidebar-items16"
+                  onClick={() => {
+                    this.FuncActiveInActiveSidebarMenu('3');
+                  }}
+                >
+                  <section>
+                    <SettingsApplications />
+
+                    <span>تنظیمات سایت</span>
+                  </section>
+
+                  <KeyboardArrowDown className="icon-menu-sidebar-items icon-menu-sidebar-items16" />
+                </li>
+                <ul className="section-menu-sidebar-inner section-menu-sidebar-inner16">
+                  <li
+                    className="link-items link-item140"
+                    aria-label="SiteSetting"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('7');
+                    }}
+                  >
+                    <Link to="/SiteSetting">
+                      <Settings />
+                      <span>تنظیمات سایت</span>
                     </Link>
                   </li>
                 </ul>
               </section>
             </ul>
+
+            {/* Start Section Setting */}
+            <section className="setting">
+              <section className="d-flex align-items-center justify-content-between p-2 divider">
+                <span>تنظیمات </span>
+
+                <Close
+                  onClick={() => {
+                    this.FuncOpenCloseSetting();
+                  }}
+                  titleAccess="بستن تنظیمات"
+                />
+              </section>
+
+              <section className="section-button-setting">
+                <Link
+                  to="/"
+                  onClick={() => {
+                    this.FuncSetActiveSubMenus('9');
+                  }}
+                >
+                  صفحه اصلی پنل
+                </Link>
+              </section>
+
+              <section className="section-button-setting">
+                <a
+                  className="bg-secondary"
+                  target="_blank"
+                  href="https://amirmohammad0.ir/Blog"
+                  rel="noreferrer"
+                >
+                  نمونه کار های دیگر من
+                </a>
+              </section>
+
+              <section className="section-button-setting">
+                <a
+                  className="bg-info"
+                  target="_blank"
+                  href="https://wa.me/c/989039647011"
+                  rel="noreferrer"
+                >
+                  خرید پنل
+                </a>
+              </section>
+
+              <section className="divider"></section>
+
+              <section className="d-flex align-items-center justify-content-between p-2 divider">
+                <span>عوض کردن تم پنل</span>
+
+                <section
+                  className="form-check form-switch"
+                  title="عوض کردن تم پنل"
+                >
+                  <input
+                    className="form-check-input cursor-pointer"
+                    type="checkbox"
+                    id="StateIconDarkLightMode"
+                    checked={this.state.StateIconDarkLightMode}
+                    onChange={() => {
+                      this.FuncDarkLightMode();
+                    }}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="StateIconDarkLightMode"
+                  ></label>
+                </section>
+              </section>
+
+              <section className="d-flex align-items-center justify-content-between p-2 divider">
+                <span>حذف کردن هدر پنل</span>
+
+                <section
+                  className="form-check form-switch"
+                  title="حذف کردن هدر پنل"
+                >
+                  <input
+                    className="form-check-input cursor-pointer"
+                    type="checkbox"
+                    id="StateHeaderPanel"
+                    checked={this.state.StateHeaderPanel}
+                    onChange={() => {
+                      this.FuncHiddenHeader();
+                    }}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="StateHeaderPanel"
+                  ></label>
+                </section>
+              </section>
+
+              <section className="d-flex align-items-center justify-content-between p-2 divider">
+                <span>حذف کردن منو کناری</span>
+
+                <section
+                  className="form-check form-switch"
+                  title="حذف کردن منو کناری"
+                >
+                  <input
+                    className="form-check-input cursor-pointer"
+                    type="checkbox"
+                    id="StateMenuPanel"
+                    checked={this.state.StateMenuPanel}
+                    onChange={() => {
+                      this.FuncHiddenMenu();
+                    }}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="StateMenuPanel"
+                  ></label>
+                </section>
+              </section>
+
+              <section className="d-flex align-items-center justify-content-between p-2 divider">
+                <span>عوض کردن رنگ پس زمینه</span>
+
+                <section
+                  className="d-flex align-items-center justify-content-center"
+                  title="عوض کردن رنگ پس زمینه"
+                >
+                  <input
+                    type="color"
+                    className="input-color-mp-theme"
+                    value={this.state.MpTheme}
+                    onChange={() => {
+                      this.FuncChangeMpTheme();
+                    }}
+                    onFocus={() => {
+                      this.FuncChangeMpTheme();
+                    }}
+                  />
+                </section>
+              </section>
+
+              <section className="d-flex align-items-center justify-content-between p-2 divider">
+                <span>عوض کردن رنگ منو و هدر</span>
+
+                <section
+                  className="d-flex align-items-center justify-content-center"
+                  title="عوض کردن رنگ منو و هدر"
+                >
+                  <input
+                    type="color"
+                    className="input-color-mp-theme-other"
+                    value={this.state.MpThemeOther}
+                    onChange={() => {
+                      this.FuncChangeMpThemeOther();
+                    }}
+                    onFocus={() => {
+                      this.FuncChangeMpThemeOther();
+                    }}
+                  />
+                </section>
+              </section>
+
+              <section className="d-flex align-items-center justify-content-between p-2 divider">
+                <span>عوض کردن رنگ مودال ها</span>
+
+                <section
+                  className="d-flex align-items-center justify-content-center"
+                  title="عوض کردن رنگ مودال ها"
+                >
+                  <input
+                    type="color"
+                    className="input-color-mp-theme-dropdown-menu"
+                    value={this.state.MpThemeDropdownMenu}
+                    onChange={() => {
+                      this.FuncChangeMpThemeDropdownMenu();
+                    }}
+                    onFocus={() => {
+                      this.FuncChangeMpThemeDropdownMenu();
+                    }}
+                  />
+                </section>
+              </section>
+
+              <section className="d-flex align-items-center justify-content-between p-2 divider">
+                <span>عوض کردن رنگ متن و ایکون</span>
+
+                <section
+                  className="d-flex align-items-center justify-content-center"
+                  title="عوض کردن رنگ متن و ایکون"
+                >
+                  <input
+                    type="color"
+                    className="input-color-mp-theme-color"
+                    value={this.state.MpThemeColor}
+                    onChange={() => {
+                      this.FuncChangeMpThemeColor();
+                    }}
+                    onFocus={() => {
+                      this.FuncChangeMpThemeColor();
+                    }}
+                  />
+                </section>
+              </section>
+
+              <section className="d-flex align-items-center justify-content-between p-2 divider">
+                <span>عوض کردن رنگ هاور</span>
+
+                <section
+                  className="d-flex align-items-center justify-content-center"
+                  title="عوض کردن رنگ هاور"
+                >
+                  <input
+                    type="color"
+                    className="input-color-mp-theme-other-hover"
+                    value={this.state.MpThemeOtherHover}
+                    onChange={() => {
+                      this.FuncChangeMpThemeOtherHover();
+                    }}
+                    onFocus={() => {
+                      this.FuncChangeMpThemeOtherHover();
+                    }}
+                  />
+                </section>
+              </section>
+
+              <section className="d-flex align-items-center justify-content-between p-2 divider">
+                <span>ریست تنظیمات</span>
+
+                <section title="عوض کردن تم پنل">
+                  <button
+                    onClick={() => {
+                      this.FuncResetSetting();
+                    }}
+                    className="btn btn-primary"
+                  >
+                    <RotateLeft />
+                  </button>
+                </section>
+              </section>
+            </section>
+
+            <section className="button-go-to-todo-list divider">
+              <Link
+                to="/SiteSetting"
+                onClick={() => {
+                  this.FuncSetActiveSubMenus('140');
+                }}
+              >
+                رفتن به تنظیمات
+              </Link>
+            </section>
+
+            {/* End Section Setting */}
+            {/* Start Section Profile */}
+            <section className="profile">
+              <ul
+                onClick={() => {
+                  this.FuncCloseAllBox();
+                }}
+              >
+                <li className="divider li-profile">
+                  <Link
+                    to="/PagesAdditionAccountSetting"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('177');
+                    }}
+                  >
+                    <img
+                      alt="Profile"
+                      loading="lazy"
+                      src="/Assets/Images/Profiles/Profile.png"
+                      className="image-profile-inner"
+                    />
+                    <section className="text-profile">
+                      <p>حمیدرضا رفیعی</p>
+                      <p>توسعه دهنده وب</p>
+                    </section>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/PagesAdditionAccountSetting"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('177');
+                    }}
+                  >
+                    <PermIdentityOutlined />
+                    <span>پروفایل</span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/CmsMailTemplates"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('156');
+                    }}
+                  >
+                    <MailOutlined />
+                    <span>صندوق ورودی</span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/OthersChat"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('159');
+                    }}
+                  >
+                    <ChatBubbleOutlineOutlined />
+                    <span>پیام ها</span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/PaymentPricingPlans"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('130');
+                    }}
+                  >
+                    <AttachMoneyOutlined />
+                    <span>طرح های قیمت گذاری</span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/SiteSetting"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('140');
+                    }}
+                  >
+                    <Settings />
+                    <span>تنظیمات</span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/PagesAdditionFAQ"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('179');
+                    }}
+                  >
+                    <HelpOutlineOutlined />
+                    <span>کمک</span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/PaymentAllPayment"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('125');
+                    }}
+                  >
+                    <AttachMoneyOutlined />
+                    <span>همه پرداخت ها</span>
+                  </Link>
+                </li>
+
+                <li className="divider">
+                  <Link
+                    to="/OthersActivity"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('158');
+                    }}
+                  >
+                    <MovingOutlined />
+                    <span>نوتیفیکیشن</span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/LogOut"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('168');
+                    }}
+                  >
+                    <LoginOutlined />
+                    <span>خروج از سیستم</span>
+                  </Link>
+                </li>
+              </ul>
+            </section>
+            {/* End Section Profile */}
+            {/* Start Section Search Box */}
+            <section className="search-box">
+              <form className="form-search" method="GET">
+                <input
+                  placeholder="جستجو"
+                  className="input-form-search"
+                  name="Search"
+                  required={true}
+                />
+
+                <button type="submit" className="button-form-search">
+                  <Search titleAccess="جستجوی کلمه مورد نظر" />
+                </button>
+              </form>
+            </section>
+            {/* End Section Search Box */}
           </section>
 
           {/* Start Section Footer */}
