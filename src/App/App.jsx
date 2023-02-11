@@ -13,31 +13,29 @@ import {
   KeyboardArrowDown,
   Analytics,
   ArrowUpward,
-  Person,
-  PersonAddAltOutlined,
-  Group,
-  SettingsApplications,
   Close,
   RotateLeft,
   MovingOutlined,
   PermIdentityOutlined,
-  MailOutlined,
   ChatBubbleOutlineOutlined,
-  AttachMoneyOutlined,
-  HelpOutlineOutlined,
   LoginOutlined,
 } from '@mui/icons-material';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import WysiwygIcon from '@mui/icons-material/Wysiwyg';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import FolderSharedIcon from '@mui/icons-material/FolderShared';
+import BugReportIcon from '@mui/icons-material/BugReport';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 import CRM from './Pages/Dashboard/CRM/CRM';
 import DataAccess from './Pages/Dashboard/DataAccess';
 import DataEmployee from './Pages/Dashboard/DataEmployee';
 import DataZitel from './Pages/Dashboard/DataZitel';
-import UsersAddNewUsers from './Pages/Users/AddNewUsers/AddNewUsers';
+import CreateIssues from './Pages/Issues/CreateIssues';
 import SettingsSiteSetting from './Pages/Settings/SiteSetting/SiteSetting';
 import Login from './Pages/Account/Login';
+import TableIssues from './Pages/Issues/TableIssues';
+import PageIssues from './Pages/Issues/PageIssues';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -541,8 +539,10 @@ export default class App extends React.Component {
               <Route path="/DataAccess" element={<DataAccess />} />
               <Route path="/DataEmployee" element={<DataEmployee />} />
               <Route path="/DataZitel" element={<DataZitel />} />
+              <Route path="/TableIssues" element={<TableIssues />} />
+              <Route path="/PageIssues" element={<PageIssues />} />
 
-              <Route path="/UsersAddNewUsers" element={<UsersAddNewUsers />} />
+              <Route path="/CreateIssues" element={<CreateIssues />} />
               <Route path="/SiteSetting" element={<SettingsSiteSetting />} />
               <Route path="/Login" element={<Login />} />
             </Routes>
@@ -648,6 +648,19 @@ export default class App extends React.Component {
                       <span>اطلاعات کارمند</span>
                     </Link>
                   </li>
+
+                  <li
+                    className="link-items link-item5"
+                    aria-label="TableIssues"
+                    onClick={() => {
+                      this.FuncSetActiveSubMenus('5');
+                    }}
+                  >
+                    <Link to="/TableIssues">
+                      <BugReportIcon />
+                      <span>نمایش ISSUE</span>
+                    </Link>
+                  </li>
                 </ul>
               </section>
 
@@ -659,68 +672,24 @@ export default class App extends React.Component {
                   }}
                 >
                   <section>
-                    <Person />
+                    <NoteAddIcon />
 
-                    <span>کاربران</span>
+                    <span>ثبت گزارش کار</span>
                   </section>
 
                   <KeyboardArrowDown className="icon-menu-sidebar-items icon-menu-sidebar-items2" />
                 </li>
                 <ul className="section-menu-sidebar-inner section-menu-sidebar-inner2">
                   <li
-                    className="link-items link-item5"
-                    aria-label="UsersAddNewUsers"
-                    onClick={() => {
-                      this.FuncSetActiveSubMenus('5');
-                    }}
-                  >
-                    <Link to="/UsersAddNewUsers">
-                      <PersonAddAltOutlined />
-                      <span>افزودن کاربران جدید</span>
-                    </Link>
-                  </li>
-
-                  <li
-                    className="link-items link-item7"
-                    aria-label="UsersAllUsers"
+                    className="link-items link-item6"
+                    aria-label="CreateIssues"
                     onClick={() => {
                       this.FuncSetActiveSubMenus('6');
                     }}
                   >
-                    <Link to="/UsersAllUsers">
-                      <Group />
-                      <span>تمام کاربران</span>
-                    </Link>
-                  </li>
-                </ul>
-              </section>
-
-              <section className="section-menu-sidebar-main">
-                <li
-                  className="section-menu-sidebar-items section-menu-sidebar-items16"
-                  onClick={() => {
-                    this.FuncActiveInActiveSidebarMenu('3');
-                  }}
-                >
-                  <section>
-                    <SettingsApplications />
-
-                    <span>تنظیمات سایت</span>
-                  </section>
-
-                  <KeyboardArrowDown className="icon-menu-sidebar-items icon-menu-sidebar-items16" />
-                </li>
-                <ul className="section-menu-sidebar-inner section-menu-sidebar-inner16">
-                  <li
-                    className="link-items link-item140"
-                    aria-label="SiteSetting"
-                    onClick={() => {
-                      this.FuncSetActiveSubMenus('7');
-                    }}
-                  >
-                    <Link to="/SiteSetting">
-                      <Settings />
-                      <span>تنظیمات سایت</span>
+                    <Link to="/CreateIssues">
+                      <AddBoxIcon />
+                      <span>افزودن مشکل</span>
                     </Link>
                   </li>
                 </ul>
@@ -749,28 +718,6 @@ export default class App extends React.Component {
                 >
                   صفحه اصلی پنل
                 </Link>
-              </section>
-
-              <section className="section-button-setting">
-                <a
-                  className="bg-secondary"
-                  target="_blank"
-                  href="https://amirmohammad0.ir/Blog"
-                  rel="noreferrer"
-                >
-                  نمونه کار های دیگر من
-                </a>
-              </section>
-
-              <section className="section-button-setting">
-                <a
-                  className="bg-info"
-                  target="_blank"
-                  href="https://wa.me/c/989039647011"
-                  rel="noreferrer"
-                >
-                  خرید پنل
-                </a>
               </section>
 
               <section className="divider"></section>
@@ -1018,18 +965,6 @@ export default class App extends React.Component {
 
                 <li>
                   <Link
-                    to="/CmsMailTemplates"
-                    onClick={() => {
-                      this.FuncSetActiveSubMenus('156');
-                    }}
-                  >
-                    <MailOutlined />
-                    <span>صندوق ورودی</span>
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
                     to="/OthersChat"
                     onClick={() => {
                       this.FuncSetActiveSubMenus('159');
@@ -1042,18 +977,6 @@ export default class App extends React.Component {
 
                 <li>
                   <Link
-                    to="/PaymentPricingPlans"
-                    onClick={() => {
-                      this.FuncSetActiveSubMenus('130');
-                    }}
-                  >
-                    <AttachMoneyOutlined />
-                    <span>طرح های قیمت گذاری</span>
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
                     to="/SiteSetting"
                     onClick={() => {
                       this.FuncSetActiveSubMenus('140');
@@ -1061,30 +984,6 @@ export default class App extends React.Component {
                   >
                     <Settings />
                     <span>تنظیمات</span>
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    to="/PagesAdditionFAQ"
-                    onClick={() => {
-                      this.FuncSetActiveSubMenus('179');
-                    }}
-                  >
-                    <HelpOutlineOutlined />
-                    <span>کمک</span>
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    to="/PaymentAllPayment"
-                    onClick={() => {
-                      this.FuncSetActiveSubMenus('125');
-                    }}
-                  >
-                    <AttachMoneyOutlined />
-                    <span>همه پرداخت ها</span>
                   </Link>
                 </li>
 
@@ -1141,12 +1040,12 @@ export default class App extends React.Component {
           >
             <section className="row w-100 h-100 d-flex align-items-center justify-content-center mr-5 pr-5">
               <span className="text-center mr-5 pr-5">
-                حق چاپ © 2022 درست شده توسط{' '}
+                حق چاپ © 2023 درست شده توسط{' '}
                 <a
                   href="/"
                   target="_blank"
                   rel="noreferrer"
-                  title="وبسایت شخصی امیر محمد کوشکیان"
+                  title="تیم لیدر پشتیبانی"
                 >
                   حمیدرضا رفیعی
                 </a>

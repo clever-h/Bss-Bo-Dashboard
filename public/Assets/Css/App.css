@@ -60,7 +60,7 @@
 .app_main {
   width: 100vw;
   height: 100vh;
-  background-color: var(--mp-theme);
+  background-color: var(--mp-theme-color);
   color: var(--mp-theme-color);
   font-family: var(--mp-font);
   direction: rtl;
@@ -1806,7 +1806,8 @@ input[type="color"] {
   overflow-x: auto;
 }
 .table-users-page-new-user-request tr {
-  height: 60px;
+  width: 1900px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1826,7 +1827,7 @@ input[type="color"] {
 .table-users-page-new-user-request tr th::after {
   content: "\2193";
   position: relative;
-  right: 2px;
+  right: 3px;
 }
 .table-users-page-new-user-request img {
   width: 35px;
