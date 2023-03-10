@@ -1,12 +1,83 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 
 function CreateIssues() {
+  const [title, setTitle] = useState('');
+  const [numberIssue, setNumberIssue] = useState('');
+  const [dateIssue, setDateIssue] = useState('');
+  const [decsIssue, setDecsIssue] = useState('');
+  const [communications, setCommunications] = useState('');
+  const [teamRequester, setTeamRequester] = useState('');
+  const [imgFile, setImgFile] = useState('');
+  const [creator, setCreator] = useState('');
+  const [status, setStatus] = useState(true);
+
+  const optionsCommunications = [
+    '-',
+    'پیام رسان',
+    'ایمیل',
+    'تلفن',
+    'Service Request',
+    'دیگر',
+  ];
+  const optionsTeamRequester = [
+    '-',
+    'تیم Sale',
+    'تیم RAN',
+    'تیم NOC',
+    'تیم QA',
+    'تیم HR',
+    'تیم OPS',
+    'تیم IPBO',
+    'تیم نصب و نگهداری',
+    'تیم P2P',
+    'تیم هماهنگی نصب',
+    'تیم AHD',
+  ];
+  const optionsCreator = [
+    '-',
+    'پاشا کوراغلی',
+    'حمیدرضا رفیعی',
+    'سعید بطحایی',
+    'ستاره احمدی',
+  ];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('numberIssue', numberIssue);
+    formData.append('dateIssue', dateIssue);
+    formData.append('imgFile', imgFile);
+    formData.append('decsIssue', decsIssue);
+    formData.append('communications', communications);
+    formData.append('teamRequester', teamRequester);
+    formData.append('creator', creator);
+    formData.append('status', status);
+    console.log(imgFile);
+
+    axios
+      .post('http://localhost:5000/DataIssues/add', formData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.massage);
+      });
+  };
+
   return (
     <section className="p-3">
       <section className="row">
         <section className="row d-flex align-items-center justify-content-center">
           <section className="col-xl-12 p-2">
-            <form method="POST" encType="multipart/form-data">
+            <form
+              action="/DataIssues"
+              method="POST"
+              encType="multipart/form-data"
+              onSubmit={handleSubmit}
+            >
               <section className="bg-t-o b-r-10">
                 <section className="col-xl-12 p-3">
                   <span>صفحه جدیدی را برای مشکل اضافه کنید</span>
@@ -17,8 +88,9 @@ function CreateIssues() {
                     type="text"
                     className="input-content-users p-2"
                     placeholder="عنوان مشکل"
-                    name="BannerTitle"
-                    required={true}
+                    name="IssueTitle"
+                    onChange={(e) => setTitle(e.target.value)}
+                    value={title}
                   />
                 </section>
 
@@ -27,8 +99,9 @@ function CreateIssues() {
                     type="text"
                     className="input-content-users p-2"
                     placeholder="شناسه مرتبط (شماره فرآیند ، شماره مشتری ، شماره سیم کارت )"
-                    name="BannerSubTitle"
-                    required={true}
+                    name="Issueidentifier"
+                    onChange={(e) => setNumberIssue(e.target.value)}
+                    value={numberIssue}
                   />
                 </section>
 
@@ -37,17 +110,18 @@ function CreateIssues() {
                     type="text"
                     className="input-content-users p-2"
                     placeholder="تاریخ و روز ثبت مشکل"
-                    name="DownloadLink"
-                    required={true}
+                    name="DateIssue"
+                    onChange={(e) => setDateIssue(e.target.value)}
+                    value={dateIssue}
                   />
                 </section>
 
                 <section className="col-xl-12 p-3">
                   <input
                     className="input-content-users p-2"
-                    required={true}
                     type="file"
-                    name="EbookPreviewImage"
+                    name="image"
+                    onChange={(e) => setImgFile(e.target.files)}
                   />
                 </section>
               </section>
@@ -63,7 +137,8 @@ function CreateIssues() {
                     className="input-content-users p-2"
                     placeholder="درخصوص این مشکل توضیحات را کامل بنویسید"
                     name="GoogleSchema"
-                    required={true}
+                    onChange={(e) => setDecsIssue(e.target.value)}
+                    value={decsIssue}
                   />
                 </section>
               </section>
@@ -77,14 +152,17 @@ function CreateIssues() {
                   <span className="col-xl-2">راه ارتباطی</span>
 
                   <section className="col-xl-2">
-                    <select className="input-content-users p-10" name="Status">
-                      <option value="person1">-</option>
-                      <option value="Public">پیام رسان بله</option>
-                      <option value="Draft">ایمیل</option>
-                      <option value="Public">تلفن</option>
-                      <option value="Draft">تیکت های SR</option>
-                      <option value="Public">What'sUp</option>
-                      <option value="Draft">دیگر</option>
+                    <select
+                      className="input-content-users p-10"
+                      name="Status"
+                      value={communications}
+                      onChange={(e) => setCommunications(e.target.value)}
+                    >
+                      {optionsCommunications.map((value) => (
+                        <option value={value} key={value}>
+                          {value}
+                        </option>
+                      ))}
                     </select>
                   </section>
                 </section>
@@ -96,11 +174,14 @@ function CreateIssues() {
                     <select
                       className="input-content-users p-10"
                       name="Visibility"
+                      value={creator}
+                      onChange={(e) => setCreator(e.target.value)}
                     >
-                      <option value="person1">-</option>
-                      <option value="person1">سعید بطحایی</option>
-                      <option value="person2">حمیدرضا رفیعی</option>
-                      <option value="person3">ستاره احمدی</option>
+                      {optionsCreator.map((value) => (
+                        <option value={value} key={value}>
+                          {value}
+                        </option>
+                      ))}
                     </select>
                   </section>
                 </section>
@@ -112,12 +193,26 @@ function CreateIssues() {
                     <select
                       className="input-content-users p-10"
                       name="Visibility"
+                      value={teamRequester}
+                      onChange={(e) => setTeamRequester(e.target.value)}
                     >
-                      <option value="person1">-</option>
-                      <option value="person1">تیم فروش</option>
-                      <option value="person2">تیم RAN</option>
-                      <option value="person3">تیم هماهنگ کننده نصب</option>
+                      {optionsTeamRequester.map((value) => (
+                        <option value={value} key={value}>
+                          {value}
+                        </option>
+                      ))}
                     </select>
+                  </section>
+                </section>
+                <section className="row d-flex col-12 p-3">
+                  <span className="col-xl-2">وضعیت مشکل : فعال</span>
+
+                  <section className="col-xl-2">
+                    <input
+                      type="checkbox"
+                      checked={status}
+                      onChange={(e) => setStatus(e.target.checked)}
+                    />
                   </section>
                 </section>
 

@@ -1798,7 +1798,7 @@ input[type="color"] {
 }
 /************************************************************************/ /* End Style Page Ecommerce */
 
-/************************************************************************/ /* Start Style Pages Users */
+/************************************************************************/ /* Start Style Pages Users (اطلاعات کارمندان زیتل) */
 .table-users-page-new-user-request {
   width: 100%;
   height: 500px;
@@ -1806,7 +1806,7 @@ input[type="color"] {
   overflow-x: auto;
 }
 .table-users-page-new-user-request tr {
-  width: 1900px;
+  width: 100%;
   height: 50px;
   display: flex;
   align-items: center;

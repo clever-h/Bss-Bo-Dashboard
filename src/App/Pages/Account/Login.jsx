@@ -13,7 +13,7 @@ function Login() {
                 loading="lazy"
                 src="/Assets/Images/Logo.png"
               />
-              <span className="pt-4">به میستر پنل خوش آمدید! 👋🏻</span>
+              <span className="pt-4">به پنل تیم پشتیبانی خوش آمدید! 👋🏻</span>
 
               <span className="pt-4 text-center">
                 لطفا وارد حساب کاربری خود شوید و ماجراجویی را شروع کنید

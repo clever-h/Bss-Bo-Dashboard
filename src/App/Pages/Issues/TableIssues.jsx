@@ -1,8 +1,28 @@
 import React from 'react';
 import { Search } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function TableIssues() {
+  const [dataI, setDataI] = useState([]);
+  const [search, setSearch] = useState('');
+
+  async function fetchData() {
+    try {
+      const response = await axios.get(
+        //'https://bss-bo.iran.liara.run/DataEmployee'
+        'http://localhost:5000/DataIssues/'
+      );
+      setDataI(response.data.result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <section className="p-3">
       <section className="row">
@@ -10,7 +30,7 @@ function TableIssues() {
           <section className="col-xl-12 p-2">
             <section className="bg-t-o b-r-10">
               <section className="d-flex align-items-center justify-content-between p-3">
-                <span>تبلیغات فعلی</span>
+                <span>نمایش تیکت ها</span>
               </section>
 
               <section className="row d-flex align-items-center justify-content-between p-3">
@@ -38,12 +58,9 @@ function TableIssues() {
                       placeholder="جستجو"
                       className="input-form-search"
                       name="Search"
-                      required
+                      onChange={(e) => setSearch(e.target.value)}
                     />
-
-                    <button type="submit" className="button-form-search">
-                      <Search titleAccess="جستجوی کلمه مورد نظر" />
-                    </button>
+                    <Search titleAccess="جستجوی کلمه مورد نظر" />
                   </form>
                 </section>
               </section>
@@ -69,124 +86,40 @@ function TableIssues() {
                   </thead>
 
                   <tbody>
-                    <tr>
-                      <td>حمیدرضا رفیعی</td>
-                      <td>خطا جاوا ران تایم در فرایند </td>
-                      <td>1401/11/21</td>
-                      <td>19548741</td>
-                      <td>تیم نصب و نگهداری</td>
-                      <td>پیام رسان بله</td>
-                      <td>
-                        <span className="bg-t-d-m b-r-11 pr-1 pl-1">
-                          خاتمه یافته
-                        </span>
-                      </td>
-                      <td>
-                        <Link to="/PageIssues">
-                          <span className="input-buttons pt-1 pb-1 pr-1 pl-1">
-                            مشاهده
-                          </span>
-                        </Link>
-                      </td>
+                    {dataI &&
+                      dataI.length > 0 &&
+                      dataI
+                        .filter((item) =>
+                          item.title.toLowerCase().includes(search)
+                        )
+                        .map((issueObj, index) => (
+                          <tr key={issueObj._id}>
+                            <td>{issueObj.creator}</td>
+                            <td>{issueObj.title}</td>
+                            <td>{issueObj.dateIssue}</td>
+                            <td>{issueObj.numberIssue}</td>
+                            <td>{issueObj.teamRequester}</td>
+                            <td>{issueObj.communications}</td>
+                            <td>
+                              <span className="bg-t-d-m b-r-11 pr-1 pl-1">
+                                {issueObj.statusIssue}
+                              </span>
+                            </td>
+                            <td>
+                              <Link to="/PageIssues">
+                                <span className="input-buttons pt-1 pb-1 pr-1 pl-1">
+                                  مشاهده
+                                </span>
+                              </Link>
+                            </td>
 
-                      <td>
-                        <span className="input-buttons pt-1 pb-1 pr-1 pl-1">
-                          حذف
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>حمیدرضا رفیعی</td>
-                      <td>خطا جاوا ران تایم در فرایند </td>
-                      <td>1401/11/21</td>
-                      <td>19548741</td>
-                      <td>تیم مالی</td>
-                      <td>ایمیل</td>
-                      <td>
-                        <span className="bg-t-d-m b-r-11 pr-1 pl-1">
-                          خاتمه یافته
-                        </span>
-                      </td>
-                      <td>
-                        <span className="input-buttons pt-1 pb-1 pr-1 pl-1">
-                          مشاهده
-                        </span>
-                      </td>
-                      <td>
-                        <span className="input-buttons pt-1 pb-1 pr-1 pl-1">
-                          حذف
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>حمیدرضا رفیعی</td>
-                      <td>خطا جاوا ران تایم در فرایند </td>
-                      <td>1401/11/21</td>
-                      <td>19548741</td>
-                      <td>هماهنگ کننده نصب</td>
-                      <td>تلفن</td>
-                      <td>
-                        <span className="bg-t-d-m b-r-11 pr-1 pl-1">
-                          خاتمه یافته
-                        </span>
-                      </td>
-                      <td>
-                        <span className="input-buttons pt-1 pb-1 pr-1 pl-1">
-                          مشاهده
-                        </span>
-                      </td>
-                      <td>
-                        <span className="input-buttons pt-1 pb-1 pr-1 pl-1">
-                          حذف
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>حمیدرضا رفیعی</td>
-                      <td>خطا جاوا ران تایم در فرایند </td>
-                      <td>1401/11/21</td>
-                      <td>19548741</td>
-                      <td>تیم NOC</td>
-                      <td>ایمیل</td>
-                      <td>
-                        <span className="bg-t-d-m b-r-11 pr-1 pl-1">
-                          خاتمه یافته
-                        </span>
-                      </td>
-                      <td>
-                        <span className="input-buttons pt-1 pb-1 pr-1 pl-1">
-                          مشاهده
-                        </span>
-                      </td>
-                      <td>
-                        <span className="input-buttons pt-1 pb-1 pr-1 pl-1">
-                          حذف
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>حمیدرضا رفیعی</td>
-                      <td>خطا جاوا ران تایم در فرایند </td>
-                      <td>1401/11/21</td>
-                      <td>19548741</td>
-                      <td>تیم نصب و نگهداری</td>
-                      <td>تیکت SR</td>
-                      <td>
-                        <span className="bg-t-d-m b-r-11 pr-1 pl-1">
-                          خاتمه یافته
-                        </span>
-                      </td>
-                      <td>
-                        <span className="input-buttons pt-1 pb-1 pr-1 pl-1">
-                          مشاهده
-                        </span>
-                      </td>
-                      <td>
-                        <span className="input-buttons pt-1 pb-1 pr-1 pl-1">
-                          حذف
-                        </span>
-                      </td>
-                    </tr>
+                            <td>
+                              <span className="input-buttons pt-1 pb-1 pr-1 pl-1">
+                                حذف
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
                   </tbody>
                 </table>
               </section>

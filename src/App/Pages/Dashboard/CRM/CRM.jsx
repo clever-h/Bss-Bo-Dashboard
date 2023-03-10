@@ -8,6 +8,9 @@ import fa from 'apexcharts/dist/locales/fa.json';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Start Section Class
 export default class CRM extends React.Component {
+
+
+  
   state = {
     SeriesTotalProfit: [87, 54, 32, 10],
     OptionsTotalProfit: {
