@@ -1,6 +1,16 @@
 import React from 'react';
+import { useState } from 'react';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [passwrod, setPassword] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(email, passwrod);
+  };
+
   return (
     <section className="p-3 h-100">
       <section className="row h-100">
@@ -19,7 +29,7 @@ function Login() {
                 لطفا وارد حساب کاربری خود شوید و ماجراجویی را شروع کنید
               </span>
 
-              <form className="col-12 p-3 text-center" method="POST">
+              <form className="col-12 p-3 text-center" onSubmit={handleSubmit}>
                 <section className="d-flex align-items-center justify-content-center flex-column">
                   <section className="col-12 p-3">
                     <input
@@ -28,6 +38,8 @@ function Login() {
                       type="email"
                       placeholder="ایمیل"
                       required={true}
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
                     />
                   </section>
 
@@ -38,6 +50,8 @@ function Login() {
                       type="password"
                       placeholder="پسورد"
                       required={true}
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={passwrod}
                     />
                   </section>
                 </section>

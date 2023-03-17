@@ -1,6 +1,16 @@
 import React from 'react';
+import { useState } from 'react';
 
 function Register() {
+  const [email, setEmail] = useState('');
+  const [passwrod, setPassword] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(email, passwrod);
+  };
+
   return (
     <section className="p-3 h-100">
       <section className="row h-100">
@@ -19,18 +29,8 @@ function Register() {
                 مدیریت برنامه خود را آسان و سرگرم کننده کنید!
               </span>
 
-              <form className="col-12 p-3 text-center" method="POST">
+              <form className="col-12 p-3 text-center" onSubmit={handleSubmit}>
                 <section className="d-flex align-items-center justify-content-center flex-column">
-                  <section className="col-12 p-3">
-                    <input
-                      className="input-content-users p-2"
-                      name="UserName"
-                      type="text"
-                      placeholder="نام کاربری"
-                      required={true}
-                    />
-                  </section>
-
                   <section className="col-12 p-3">
                     <input
                       className="input-content-users p-2"
@@ -38,6 +38,8 @@ function Register() {
                       type="email"
                       placeholder="ایمیل"
                       required={true}
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
                     />
                   </section>
 
@@ -48,6 +50,8 @@ function Register() {
                       type="password"
                       placeholder="پسورد"
                       required={true}
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={passwrod}
                     />
                   </section>
                 </section>

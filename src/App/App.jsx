@@ -34,6 +34,7 @@ import DataZitel from './Pages/Dashboard/DataZitel';
 import CreateIssues from './Pages/Issues/CreateIssues';
 import SettingsSiteSetting from './Pages/Settings/SiteSetting/SiteSetting';
 import Login from './Pages/Account/Login';
+import Register from './Pages/Account/Register';
 import TableIssues from './Pages/Issues/TableIssues';
 import PageIssues from './Pages/Issues/PageIssues';
 
@@ -545,6 +546,7 @@ export default class App extends React.Component {
               <Route path="/CreateIssues" element={<CreateIssues />} />
               <Route path="/SiteSetting" element={<SettingsSiteSetting />} />
               <Route path="/Login" element={<Login />} />
+              <Route path="/Register" element={<Register />} />
             </Routes>
           </section>
 
@@ -965,13 +967,13 @@ export default class App extends React.Component {
 
                 <li>
                   <Link
-                    to="/OthersChat"
+                    to="/Register"
                     onClick={() => {
                       this.FuncSetActiveSubMenus('159');
                     }}
                   >
                     <ChatBubbleOutlineOutlined />
-                    <span>پیام ها</span>
+                    <span>ساخت حساب کاربری</span>
                   </Link>
                 </li>
 
